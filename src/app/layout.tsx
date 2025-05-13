@@ -42,7 +42,7 @@ export default function RootLayout({
           {children}
         </main>
         <Toaster
-          position="bottom-right"
+          position="top-center"
           toastOptions={{
             style: {
               background: '#f1f1f1',
@@ -51,14 +51,14 @@ export default function RootLayout({
             },
             success: {
               style: {
-                background: '#499380',
-                color: 'white',
+                background: '#fff',
+                color: 'black',
               },
             },
             error: {
               style: {
-                background: '#d40014',
-                color: 'white',
+                background: '#fff',
+                color: 'black',
               },
             },
           }}
