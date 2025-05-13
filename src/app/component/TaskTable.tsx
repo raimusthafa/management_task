@@ -87,7 +87,7 @@ export default function TaskTable({ tasks, onEdit, onDelete }: TaskTableProps) {
           {tasks.length === 0 && (
             <TableRow>
               <TableCell colSpan={5} className="text-center text-[#8c0327]">
-                No tasks available. Click "Add New Task" to create one.
+                No tasks available. Click Add New Task to create one.
               </TableCell>
             </TableRow>
           )}

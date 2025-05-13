@@ -13,7 +13,7 @@ import TaskCard from "./component/TaskCard";
 import TaskTable from "./component/TaskTable";
 import TaskCalendar from "./component/TaskCalendar";
 import TaskForm from "./component/taskForm";
-import { DeleteConfirmDialog } from "./component/DteleConfirmDialog";
+import { DeleteConfirmDialog } from "./component/DeteleConfirmDialog";
 
 export type Task = {
   id: number;

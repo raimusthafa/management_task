@@ -73,7 +73,7 @@ export default function TaskCard({ tasks, onEdit, onDelete }: TaskCardProps) {
       ))}
       {tasks.length === 0 && (
         <div className="col-span-full text-center py-8 text-[#8c0327]">
-          No tasks available. Click "Add New Task" to create one.
+          No tasks available. Click Add New Task to create one.
         </div>
       )}
     </div>
