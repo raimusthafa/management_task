@@ -6,12 +6,14 @@ import { Calendar } from "./ui/calendar";
 import { Card, CardContent } from "./ui/card";
 import { Progress } from "./ui/progress";
 
+type CalendarValue = Date | [Date | null, Date | null] | null;
+
 interface TaskCalendarProps {
   tasks: Task[];
 }
 
 export default function TaskCalendar({ tasks }: TaskCalendarProps) {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<CalendarValue>(new Date());
 
   const getTasksForDate = (date: Date) => {
     return tasks.filter((task) => {
@@ -30,25 +32,32 @@ export default function TaskCalendar({ tasks }: TaskCalendarProps) {
     return "bg-red-500";
   };
 
-  const selectedDateTasks = date ? getTasksForDate(date) : [];
+  // Handle date being Date or range tuple
+  const selectedDateTasks = Array.isArray(date)
+    ? []
+    : date
+    ? getTasksForDate(date)
+    : [];
 
   return (
     <div className="grid md:grid-cols-2 gap-6 mt-4">
       <div>
         <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
+          value={date}
+          onChange={(value: CalendarValue) => setDate(value)}
           className="rounded-md border shadow"
         />
       </div>
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">
-          Tasks for {date?.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}
+          Tasks for{" "}
+          {Array.isArray(date)
+            ? `${date[0]?.toLocaleDateString("en-US")} - ${date[1]?.toLocaleDateString("en-US")}`
+            : date?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
         </h3>
         {selectedDateTasks.length === 0 ? (
           <p className="text-gray-500">No tasks for this date.</p>
@@ -63,9 +72,9 @@ export default function TaskCalendar({ tasks }: TaskCalendarProps) {
                     <span>Progress</span>
                     <span>{task.progress}%</span>
                   </div>
-                  <Progress 
-                    value={task.progress} 
-                    className={`h-2 ${getProgressColor(task.progress)}`} 
+                  <Progress
+                    value={task.progress}
+                    className={`h-2 ${getProgressColor(task.progress)}`}
                   />
                 </div>
               </CardContent>
