@@ -4,7 +4,6 @@ import { Card } from "./ui/card";
 import ReactECharts from "echarts-for-react";
 import { Task } from "@/app/page";
 import { useState } from "react";
-import { Select } from "./ui/select";
 import { Label } from "./ui/label";
 
 interface TaskChartProps {
