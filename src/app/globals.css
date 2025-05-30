@@ -120,3 +120,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* styles/fullcalendar.css */
+.fc .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.fc-daygrid-event {
+  border: none;
+  padding: 2px 4px;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+

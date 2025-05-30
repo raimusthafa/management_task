@@ -12,11 +12,6 @@ interface TaskCardProps {
 }
 
 export default function TaskCard({ tasks, onEdit, onDelete }: TaskCardProps) {
-  const getProgressColor = (progress: number) => {
-    if (progress === 100) return "bg-[#499380]";
-    if (progress >= 50) return "bg-[#e97f17]";
-    return "bg-[#d40014]";
-  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -31,8 +26,8 @@ export default function TaskCard({ tasks, onEdit, onDelete }: TaskCardProps) {
       {tasks.map((task) => (
         <Card key={task.id} className="shadow-lg bg-white border-[#dbdbdb]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-lg font-semibold text-[#8c0327]">{task.title}</CardTitle>
-            <p className="text-sm text-[#d85251]">
+            <CardTitle className="text-lg font-semibold text-gray-900">{task.title}</CardTitle>
+            <p className="text-sm text-gray-500">
               Created: {formatDate(task.createdAt)}
             </p>
           </CardHeader>
@@ -45,16 +40,15 @@ export default function TaskCard({ tasks, onEdit, onDelete }: TaskCardProps) {
                 <span className="text-[#8c0327]">Progress</span>
                 <span className="text-[#d85251]">{task.progress}%</span>
               </div>
-              <Progress 
-                value={task.progress} 
-                className={`h-2 ${getProgressColor(task.progress)}`} 
+              <Progress value={task.progress} 
+              className="bg-slate-300/60"
               />
             </div>
             <div className="flex justify-end space-x-2 mt-4">
               <Button
                 variant="outline"
                 size="sm"
-                className="w-20 border-[#8c0327] text-[#8c0327] hover:bg-[#8c0327] hover:text-white"
+                className="w-20 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
                 onClick={() => onEdit(task)}
               >
                 Edit
