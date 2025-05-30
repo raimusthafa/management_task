@@ -111,7 +111,10 @@ export default function TaskChart({ tasks }: TaskChartProps) {
     radar: {
       tooltip: {},
       radar: {
-        indicator: updatedRanges.map((d) => ({ name: d.name, max: Math.max(...updatedRanges.map(r => r.value)) + 1 })),
+        indicator: updatedRanges.map((d) => ({
+          name: d.name,
+          max: Math.max(...updatedRanges.map(r => r.value)) + 1,
+        })),
       },
       series: [
         {
@@ -133,7 +136,11 @@ export default function TaskChart({ tasks }: TaskChartProps) {
       series: [
         {
           type: "treemap",
-          data: updatedRanges.map((d) => ({ name: d.name, value: d.value, itemStyle: d.itemStyle })),
+          data: updatedRanges.map((d) => ({
+            name: d.name,
+            value: d.value,
+            itemStyle: d.itemStyle,
+          })),
           roam: false,
           label: {
             show: true,
@@ -145,9 +152,9 @@ export default function TaskChart({ tasks }: TaskChartProps) {
   };
 
   return (
-    <Card className="p-6 bg-white border-[#e5e7eb] shadow-md">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-[#1f2937]">Task Progress Overview</h3>
+    <Card className="p-4 sm:p-6 bg-white border border-gray-200 shadow-sm w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+        <h3 className="text-lg font-semibold text-gray-800">Task Progress Overview</h3>
         <div className="flex items-center gap-2">
           <Label htmlFor="chartType" className="text-sm text-gray-700">Chart</Label>
           <select
@@ -164,7 +171,7 @@ export default function TaskChart({ tasks }: TaskChartProps) {
           </select>
         </div>
       </div>
-      <div className="h-[320px] w-full">
+      <div className="w-full h-[300px] sm:h-[360px] md:h-[400px]">
         <ReactECharts
           option={chartOptions[chartType]}
           style={{ height: "100%", width: "100%" }}
