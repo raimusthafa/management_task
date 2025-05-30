@@ -39,7 +39,7 @@ export default function TaskChart({ tasks }: TaskChartProps) {
 
   const totalTasks = updatedRanges.reduce((acc, cur) => acc + cur.value, 0);
 
-  const chartOptions: Record<string, any> = {
+  const chartOptions: Record<string, object> = {
     donut: {
       title: {
         text: totalTasks > 0 ? "Task Progress" : "No Task Data",
@@ -49,8 +49,8 @@ export default function TaskChart({ tasks }: TaskChartProps) {
       },
       tooltip: {
         trigger: "item",
-        formatter: ({ name, value, percent }: any) => `
-          <strong>${name}</strong><br/>Tasks: ${value}<br/>Progress: ${percent}%`
+        formatter: (params: { name: string; value: number; percent: number }) => `
+          <strong>${params.name}</strong><br/>Tasks: ${params.value}<br/>Progress: ${params.percent}%`
       },
       legend: {
         orient: "horizontal",
